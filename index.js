@@ -9,6 +9,7 @@ function inputNumber() {
       console.log("게임 시작");
       isGaming = true;
       //게임 시작시 실행할 함수
+      randomNumber();
     } else if (gameInput == "9") {
       console.log("게임 종료");
       isGaming = false;
@@ -17,7 +18,7 @@ function inputNumber() {
     }
   } else {
     if (gameInput.length == 3) {
-      //게임 진행
+      checkNum(gameInput);
     } else if (gameInput == 9) {
       console.log("게임 종료");
       isGaming = false;
@@ -41,4 +42,20 @@ function randomNumber() {
   console.log(answerNumber);
 }
 
-randomNumber();
+function checkNum(gameInput) {
+  let strike = 0;
+  let ball = 0;
+
+  if(answerNumber == gameInput){
+    console.log("3개의 숫자를 모두 맞히셨습니다.")
+  } else {
+    for( let i = 0; i < answerNumber.length; i++) {
+      if(answerNumber[i] == gameInput[i]){
+        strike++;
+        console.log(strike)
+      }
+    }
+  }
+}
+
+
