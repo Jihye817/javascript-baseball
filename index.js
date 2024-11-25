@@ -6,13 +6,9 @@ function inputNumber() {
 
   if (!isGaming) {
     if (gameInput == "1") {
-      console.log("게임 시작");
-      isGaming = true;
-      //게임 시작시 실행할 함수
-      randomNumber();
+      gameStart();
     } else if (gameInput == "9") {
-      console.log("게임 종료");
-      isGaming = false;
+      gameStop();
     } else {
       alert("1 또는 9를 입력하세요");
     }
@@ -20,12 +16,28 @@ function inputNumber() {
     if (gameInput.length == 3) {
       checkNum(gameInput);
     } else if (gameInput == 9) {
-      console.log("게임 종료");
-      isGaming = false;
+      gameStop();
     } else {
       alert("3자리 숫자를 입력해주세요");
     }
   }
+}
+
+function gameStart() {
+  console.log("게임 시작");
+  isGaming = true;
+  document.getElementById("gameTitle").innerHTML =
+    "<div>게임이 진행중입니다</div>";
+  randomNumber();
+}
+
+function gameStop() {
+  console.log("게임 종료");
+  isGaming = false;
+  answerNumber = "";
+  document.getElementById("gameTitle").innerHTML =
+    "<div>게임을 새로 시작하려면 1, 종료하려면 9를 입력하세요</div>";
+  document.getElementById("gameResult").innerHTML = "";
 }
 
 //랜덤 3자리 숫자를 뽑아주는 함수
@@ -47,20 +59,27 @@ function checkNum(gameInput) {
   let ball = 0;
   let nothing = 0;
 
-  if(answerNumber == gameInput){
-    console.log("3개의 숫자를 모두 맞히셨습니다.")
+  if (answerNumber == gameInput) {
+    alert("3개의 숫자를 모두 맞히셨습니다.");
+    gameStop();
   } else {
-    for( let i = 0; i < answerNumber.length; i++) {
-      if(answerNumber[i] == gameInput[i]){
+    for (let i = 0; i < answerNumber.length; i++) {
+      if (answerNumber[i] == gameInput[i]) {
         strike++;
         // console.log(strike)
-      } else if(gameInput.includes(answerNumber[i])) {
+      } else if (gameInput.includes(answerNumber[i])) {
         ball++;
         // console.log(ball)
-      } else if(!gameInput.includes(answerNumber[i])){
+      } else if (!gameInput.includes(answerNumber[i])) {
         nothing++;
       }
     }
-    console.log(`${ball}볼 ${strike}스트라이크 ${nothing}낫싱`)
+    const newDiv = document.createElement("div");
+    const newText = document.createTextNode(
+      `입력 : ${gameInput} / 결과 : ${ball}볼 ${strike}스트라이크 ${nothing}낫싱`
+    );
+    newDiv.appendChild(newText);
+    document.getElementById("gameResult").appendChild(newDiv);
+    console.log(`${ball}볼 ${strike}스트라이크 ${nothing}낫싱`);
   }
 }
