@@ -45,6 +45,7 @@ function randomNumber() {
 function checkNum(gameInput) {
   let strike = 0;
   let ball = 0;
+  let nothing = 0;
 
   if(answerNumber == gameInput){
     console.log("3개의 숫자를 모두 맞히셨습니다.")
@@ -52,10 +53,14 @@ function checkNum(gameInput) {
     for( let i = 0; i < answerNumber.length; i++) {
       if(answerNumber[i] == gameInput[i]){
         strike++;
-        console.log(strike)
+        // console.log(strike)
+      } else if(gameInput.includes(answerNumber[i])) {
+        ball++;
+        // console.log(ball)
+      } else if(!gameInput.includes(answerNumber[i])){
+        nothing++;
       }
     }
+    console.log(`${ball}볼 ${strike}스트라이크 ${nothing}낫싱`)
   }
 }
-
-
