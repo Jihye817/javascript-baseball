@@ -21,18 +21,17 @@ function inputNumber() {
       alert("3자리 숫자를 입력해주세요");
     }
   }
+  document.getElementById("gameInput").value = "";
 }
 
 function gameStart() {
-  console.log("게임 시작");
   isGaming = true;
   document.getElementById("gameTitle").innerHTML =
-    "<div>게임이 진행중입니다</div>";
+    "<div>게임이 진행중입니다. 3자리 숫자를 입력해주세요.</div>";
   randomNumber();
 }
 
 function gameStop() {
-  console.log("게임 종료");
   isGaming = false;
   answerNumber = "";
   document.getElementById("gameTitle").innerHTML =
@@ -51,13 +50,25 @@ function randomNumber() {
     }
     if (count == 3) break;
   }
-  console.log(answerNumber);
 }
 
+//입력된 숫자를 체크하는 함수
 function checkNum(gameInput) {
   let strike = 0;
   let ball = 0;
   let nothing = 0;
+
+  if (gameInput.includes(0)) {
+    alert("0은 입력 불가능합니다.");
+    return;
+  }
+
+  let numberArr = gameInput.split("");
+  let set = new Set(numberArr);
+  if (numberArr.length != set.size) {
+    alert("중복 숫자는 입력이 불가능합니다.");
+    return;
+  }
 
   if (answerNumber == gameInput) {
     alert("3개의 숫자를 모두 맞히셨습니다.");
@@ -66,20 +77,18 @@ function checkNum(gameInput) {
     for (let i = 0; i < answerNumber.length; i++) {
       if (answerNumber[i] == gameInput[i]) {
         strike++;
-        // console.log(strike)
       } else if (gameInput.includes(answerNumber[i])) {
         ball++;
-        // console.log(ball)
-      } else if (!gameInput.includes(answerNumber[i])) {
+      } else {
         nothing++;
       }
     }
+
     const newDiv = document.createElement("div");
     const newText = document.createTextNode(
       `입력 : ${gameInput} / 결과 : ${ball}볼 ${strike}스트라이크 ${nothing}낫싱`
     );
     newDiv.appendChild(newText);
-    document.getElementById("gameResult").appendChild(newDiv);
-    console.log(`${ball}볼 ${strike}스트라이크 ${nothing}낫싱`);
+    document.getElementById("gameResult").prepend(newDiv);
   }
 }
