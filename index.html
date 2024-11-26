@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css">
   </head>
   <body>
     <div>
+      <h1>숫자야구게임</h1>
       <div id="gameTitle">
         게임을 새로 시작하려면 1, 종료하려면 9를 입력하세요
       </div>
@@ -17,7 +19,9 @@
         onkeypress="if(event.keyCode == 13) { inputNumber()}"
       />
       <button onclick="inputNumber()">입력</button>
-      <div id="gameResult"></div>
+      <div id="gameResult">
+       
+      </div>
     </div>
     <script src="index.js"></script>
   </body>

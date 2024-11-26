@@ -84,11 +84,11 @@ function checkNum(gameInput) {
       }
     }
 
+    const innerHTML = `<span>입력 : ${gameInput}</span> 결과 : ${ball}볼 ${strike}스트라이크 ${nothing}낫싱`;
     const newDiv = document.createElement("div");
-    const newText = document.createTextNode(
-      `입력 : ${gameInput} / 결과 : ${ball}볼 ${strike}스트라이크 ${nothing}낫싱`
-    );
-    newDiv.appendChild(newText);
+ 
+    newDiv.innerHTML = innerHTML;
     document.getElementById("gameResult").prepend(newDiv);
+    document.getElementById("gameResult").prepend(newSpan);
   }
 }
