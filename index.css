@@ -6,6 +6,7 @@ body{
   background-color: #fffbf3;
   text-align: center;
   overflow-x: hidden;
+  width: 100vw;
   font-family: 'Galmuri11', sans-serif;
 }
 h1, #gameTitle{
@@ -33,6 +34,6 @@ button{background-color: tan; color: #fff; border: solid 3px tan; margin-bottom:
 #gameResult > div span{font-weight: bold; color: #e39a4d; padding-right: 10px; border-right: solid 1px tan;}
 
 @media screen and (min-width: 600px) { 
-  body{width: 768px; margin: 0 auto; background-color: #ccc;}
+  body{width: 768px; margin: 0 auto; }
   #gameInput, button, #gameResult{width: 768px;}
 } 

@@ -3,7 +3,7 @@ let answerNumber = "";
 
 function inputNumber() {
   let gameInput = document.getElementById("gameInput").value;
-
+  document.getElementById("gameInput").value = "";
   if (!isGaming) {
     if (gameInput == "1") {
       gameStart();
@@ -21,7 +21,7 @@ function inputNumber() {
       alert("3자리 숫자를 입력해주세요");
     }
   }
-  document.getElementById("gameInput").value = "";
+  
 }
 
 function gameStart() {
